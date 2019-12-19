@@ -6,6 +6,37 @@
       "0.1"
     ],
     "latest": "0.1",
+    "type":"producer",
+    "path": "https://raw.githubusercontent.com/ciscoecosystem/Scratch/max-test/ecoScripts/service_now",
+    "icon": "icon.png",
+    "tags": "user",
+    "required_targets": [
+      "aci"
+    ]
+  },
+  {
+    "name": "service_now",
+    "label": "ServiceNow",
+    "versions": [
+      "0.1"
+    ],
+    "latest": "0.1",
+    "type":"consumer",
+    "path": "https://raw.githubusercontent.com/ciscoecosystem/Scratch/max-test/ecoScripts/service_now",
+    "icon": "icon.png",
+    "tags": "user",
+    "required_targets": [
+      "aci"
+    ]
+  },
+  {
+    "name": "service_now",
+    "label": "ServiceNow",
+    "versions": [
+      "0.1"
+    ],
+    "latest": "0.1",
+    "type":"transformer",
     "path": "https://raw.githubusercontent.com/ciscoecosystem/Scratch/max-test/ecoScripts/service_now",
     "icon": "icon.png",
     "tags": "user",

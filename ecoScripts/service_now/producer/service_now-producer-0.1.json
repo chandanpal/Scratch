@@ -1,0 +1,59 @@
+{
+    "version": "0.1",
+    "name":"service-now",
+    "type": "producer",
+    "configurable": true,
+    "schedulable": true,
+    "docker_image": "maxyso/aurora",
+    "config_parameters":
+      {
+        "name": "snow_connection_parameters",
+        "label": "ServiceNow Connection Parameters",
+        "order": 1,
+        "controls": [
+          {
+            "label": "Test ServiceNow Connectivity",
+            "action": "test_snow_connectivity",
+            "message": "Testing ServiceNow Connectivity",
+            "type": "icon",
+            "icon": {
+              "group": "action",
+              "name": "assessment"
+            }
+          }
+        ],
+        "items": [
+          {
+            "name": "service_now",
+            "label": "ServiceNow",
+            "type": "text",
+            "environment_variable_name": "SNOW_URL",
+            "required": true,
+            "placeholder": "ServiceNow URL (including protocol)",
+            "order": 1,
+            "verify": false
+          },
+          {
+            "name": "snow_username",
+            "label": "ServiceNow Username",
+            "type": "text",
+            "environment_variable_name": "SNOW_USERNAME",
+            "required": true,
+            "placeholder": "ServiceNow Username",
+            "order": 2,
+            "verify": false
+          },
+          {
+            "name": "snow_password",
+            "label": "ServiceNow Password",
+            "type": "password",
+            "environment_variable_name": "SNOW_PASSWORD",
+            "required": true,
+            "placeholder": "ServiceNow Password",
+            "order": 3,
+            "verify": false
+          }
+        ]
+      }
+  }
+  
