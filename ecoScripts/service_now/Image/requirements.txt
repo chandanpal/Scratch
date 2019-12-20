@@ -1,5 +1,0 @@
-kafka-python
-pykafka
-pyyaml
-requests
-pymongo

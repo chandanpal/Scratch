@@ -1,4 +1,0 @@
-requests
-tetpyclient
-websockets >= 3.3
-pyyaml
