@@ -1,0 +1,46 @@
+{
+  "version": "0.1",
+  "name": "service_now",
+  "type": "consumer",
+  "docker_image": "maxyso/aurora",
+  "config_parameters":
+    {
+      "name": "aci_parameters",
+      "label": "ACI Parameters",
+      "order": 1,
+      "controls": [
+        {
+          "label": "Test ACI",
+          "action": "test_aci",
+          "message": "Testing ACI",
+          "type": "icon",
+          "icon": {
+            "group": "action",
+            "name": "assessment"
+          }
+        }
+      ],
+      "items": [
+        {
+          "name": "tenant_name",
+          "label": "Tenant Name",
+          "type": "text",
+          "environment_variable_name": "TENANT_NAME",
+          "placeholder": "Tenant Name",
+          "required": true,
+          "order": 1,
+          "verify": false
+        },
+        {
+          "name": "ap_name",
+          "label": "Application Profile Name",
+          "type": "text",
+          "environment_variable_name": "AP_NAME",
+          "placeholder": "Application Profile Name",
+          "required": true,
+          "order": 2,
+          "verify": false
+        }
+      ]
+    }
+  }
