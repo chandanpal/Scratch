@@ -10,9 +10,7 @@
     "path": "https://raw.githubusercontent.com/chandanpal/Scratch/runner2.0/ecoScripts/producer/service_now-producer/",
     "icon": "icon.png",
     "tags": "servicenow",
-    "required_targets": [
-      "kafka"
-    ]
+    "required_service" : ["kafka"]
   },
   {
     "name": "service_now-consumer",
@@ -25,9 +23,11 @@
     "path": "https://raw.githubusercontent.com/chandanpal/Scratch/runner2.0/ecoScripts/consumer/service_now-consumer/",
     "icon": "icon.png",
     "tags": "servicenow",
-    "required_targets": [
-      "aci",
+    "required_service" : [
       "kafka"
+    ],
+    "required_targets": [
+      "aci"
     ]
   },
   {
@@ -41,7 +41,7 @@
     "path": "https://raw.githubusercontent.com/chandanpal/Scratch/runner2.0/ecoScripts/transformer/service_now-transformer/",
     "icon": "icon.png",
     "tags": "servicenow",
-    "required_targets": [
+    "required_service" : [
       "kafka",
       "elasticsearch",
       "flink"

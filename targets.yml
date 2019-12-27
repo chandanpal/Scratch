@@ -1,67 +1,112 @@
+# List of all supported service types
+external_service:
+  - type: kafka
+    connection_type: plaintext 
+    label: Kafka (plain text)
+    icon:
+    parameters:
+      - name: kakfa_host
+        label: Kafka Host
+        environment_variable_name: KAFKA_HOSTNAME
+        icon: dns
+        type: text
+        required: true
+      - name: kafka_port
+        label: kafka port
+        environment_variable_name: KAFKA_PORT
+        icon: dns
+        type: text
+        required: true
+
+  - type: elasticsearch
+    connection_type: plaintext 
+    label: elasticsearch (plain text)
+    icon:
+    parameters:
+      - name: es_host
+        label: Elasticsearch Host
+        environment_variable_name: ES_HOSTNAME
+        icon: dns
+        type: text
+        required: true
+      - name: es_port
+        label: Elasticsearch Port
+        environment_variable_name: ES_PORT
+        icon: dns
+        type: text
+        required: true
+  
+  - type: Flink
+    connection_type: plaintext 
+    label: Flink (plaintext)
+    icon:
+    parameters:
+      - name: flink_host
+        label: Flink Host
+        environment_variable_name: FLINK_HOSTNAME
+        icon: dns
+        type: text
+        required: true
+      - name: flink_port
+        label: Flink Port
+        environment_variable_name: FLINK_PORT
+        icon: dns
+        type: text
+        required: true
+
 # List of all supported target types
-docker_image: maxyso/discover_targets # ecohub/discover_target:v1.3
+# ecohub/discover_target:v1.3
 targets:
   - type: aci
     connection_type: userpass
     label: ACI (user/password)
     icon: aci.png
+    docker_image: maxyso/discover_targets
     parameters:
       - name: apic_hostname
         label: APIC hostname or IP
+        environment_variable_name: APIC_HOSTNAME
         icon: dns
         type: text
         required: true
       - name: aci_username
         label: Username
+        environment_variable_name: ACI_USERNAME
         icon: person
         type: text
         required: true
       - name: aci_password
         label: Password
+        environment_variable_name: ACI_PASSWORD
         icon: lock
         type: secret
         required: true
-      # - name: kafka_ip
-      #   label: Kafka server IP address
-      #   icon: dns
-      #   type: text
-      #   required: true
-      # - name: kafka_topic
-      #   label: Kafka topic name
-      #   icon: person
-      #   type: text
-      #   required: true
+
   - type: aci
     connection_type: certificate
     label: ACI (certificate)
     icon: aci.png
+    docker_image: maxyso/discover_targets
     parameters:
       - name: apic_hostname
         label: APIC hostname or IP
+        environment_variable_name: APIC_HOSTNAME
         icon: dns
         type: text
         required: true
       - name: aci_certificate
         label: Certificate
+        environment_variable_name: ACI_CERTIFICATE
         icon: chrome_reader_mode
         type: multitext
         required: true
       - name: aci_private_key
         label: Private Key
+        environment_variable_name: ACI_PRIVATE_KEY
         icon: vpn_key
         type: secret
         required: true
-      # - name: kafka_ip
-      #   label: Kafka server IP address
-      #   icon: dns
-      #   type: text
-      #   required: true
-      # - name: kafka_topic
-      #   label: Kafka topic name
-      #   icon: person
-      #   type: text
-      #   required: true
-
+      
   # - type: tetration
   #   label: Tetration
   #   icon: tetration.png
