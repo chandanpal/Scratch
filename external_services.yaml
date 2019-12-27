@@ -1,8 +1,8 @@
 # List of all supported service types
 external_service:
   - type: kafka
-    connection_type: plaintext 
-    label: Kafka (plain text)
+    connection_type: default 
+    label: Kafka (default)
     icon:
     parameters:
       - name: kakfa_host
@@ -12,15 +12,15 @@ external_service:
         type: text
         required: true
       - name: kafka_port
-        label: kafka port
+        label: Kafka Port
         environment_variable_name: KAFKA_PORT
         icon: dns
         type: text
         required: true
 
   - type: elasticsearch
-    connection_type: plaintext 
-    label: elasticsearch (plain text)
+    connection_type: default 
+    label: Elasticsearch (default)
     icon:
     parameters:
       - name: es_host
@@ -37,8 +37,8 @@ external_service:
         required: true
   
   - type: Flink
-    connection_type: plaintext 
-    label: Flink (plaintext)
+    connection_type: default 
+    label: Flink (default)
     icon:
     parameters:
       - name: flink_host
