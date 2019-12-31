@@ -1,5 +1,6 @@
 # List of all supported service types
-external_service:
+docker_image: maxyso/discover_targets
+services:  
   - type: kafka
     connection_type: default 
     label: Kafka (default)
@@ -54,14 +55,10 @@ external_service:
         type: text
         required: true
 
-# List of all supported target types
-# ecohub/discover_target:v1.3
-targets:
   - type: aci
     connection_type: userpass
     label: ACI (user/password)
     icon: aci.png
-    docker_image: maxyso/discover_targets
     parameters:
       - name: apic_hostname
         label: APIC hostname or IP
@@ -106,37 +103,3 @@ targets:
         icon: vpn_key
         type: secret
         required: true
-      
-  # - type: tetration
-  #   label: Tetration
-  #   icon: tetration.png
-  #   parameters:
-  #     - name: tetration_endpoint
-  #       label: Cluster hostname or IP
-  #       icon: dns
-  #       type: text
-  #       required: true
-  #     - name: tetration_api_key
-  #       label: API Key
-  #       icon: vpn_key
-  #       type: text
-  #       required: true
-  #     - name: tetration_api_secret
-  #       label: API Secret
-  #       icon: lock
-  #       type: secret
-  #       required: true
-  # - type: awx
-  #   label: AWX
-  #   icon: awx.png
-  #   parameters:
-  #     - name: awx_hostname
-  #       label: AWX hostname or IP
-  #       icon: dns
-  #       type: text
-  #       required: true
-  #     - name: awx_token
-  #       label: API Key
-  #       icon: lock
-  #       type: secret
-  #       required: true
