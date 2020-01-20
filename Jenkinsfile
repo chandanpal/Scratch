@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Build vcenter') {
       steps {
-        sh 'docker build -t dockersamples/vcenter ./ecoScripts/vcenter/Image'
+        sh 'docker build -t dockersamples/vcenter ./ecoScripts/application/vcenter/Image'
       }
     } 
    
