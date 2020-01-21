@@ -1,21 +1,32 @@
 pipeline {
   agent any
   stages {
-    stage('Build vcenter') {
+    stage('Build servicenow consumer Image') {
       steps {
-        sh 'docker build -t dockersamples/vcenter ./ecoScripts/application/vcenter/Image'
+        sh 'docker build -t sushmithakj2018/service_now-consumer ./ecoScripts/consumer/service_now-consumer/Image'
+      }
+    }
+    stage('Build servicenow producer Image') {
+      steps {
+        sh 'docker build -t sushmithakj2018/service_now-producer ./ecoScripts/producer/service_now-producer/Image'
       }
     } 
+
    
-    stage('Push vcenter image') {
-      when {
-        branch 'master'
-      }
+    stage('Push servicenow consumer image') {
       steps {
-        withDockerRegistry(credentialsId: 'dockerhub', url:'https://hub.docker.com') {
-          sh 'docker push dockersamples/vcenter'
+        withDockerRegistry([credentialsId: 'dockerhub', url:'']) {
+          sh 'docker push sushmithakj2018/service_now-consumer'
         }
       }
     }
+    stage('Push servicenow producer image') {
+      steps {
+        withDockerRegistry([credentialsId: 'dockerhub', url:'']) {
+          sh 'docker push sushmithakj2018/service_now-producer'
+        }
+      }
+    }
+
   }
 }
