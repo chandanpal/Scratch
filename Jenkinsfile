@@ -13,7 +13,7 @@ pipeline {
    
     stage('Push vcenter image') {
       when {
-        branch 'Runner2.0'
+        branch 'master'
       }
       steps {
         withDockerRegistry(credentialsId: 'dockerhub', url:'https://hub.docker.com') {
