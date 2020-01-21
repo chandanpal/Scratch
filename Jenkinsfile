@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'Build docker Image'
-    }
-  }
+  agent any
   stages {
     stage('Build vcenter') {
       steps {
