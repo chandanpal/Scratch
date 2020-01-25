@@ -6,7 +6,7 @@
     "versions": [
       "0.1"
     ],
-    "latest": "0.1",
+    "latest": "0.2",
     "path": "https://raw.githubusercontent.com/chandanpal/Scratch/runner2.0/ecoScripts/producer/service_now-producer/",
     "icon": "icon.png",
     "tags": "servicenow",
