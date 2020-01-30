@@ -1,0 +1,31 @@
+{
+    "database":{
+	"dialect" : "",
+        "host" : "",
+        "port" : 0,
+	"username" : "",
+        "password" : "",
+        "name" : ""
+	
+    },
+    "gitrepo": "",
+    "port": 8080,
+    "logger":{
+    	"enableConsole": true,
+	"consoleLevel": "logger.Debug",
+	"consoleJSONFormat": false,
+	"enableFile": true,
+	"fileLevel": "logger.Info",
+	"fileJSONFormat": false,
+	"fileLocation": "logs/ciscorunner.log",
+	"accessLog" : "logs/access.log",
+        "maxsize" : 100,
+        "compress" : true,
+        "maxAge" : 28
+    },
+    "helmRepo":{
+        "type": "",
+        "url":""
+
+    }
+}
