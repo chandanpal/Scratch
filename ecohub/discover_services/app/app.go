@@ -47,6 +47,7 @@ func (a *App) Initialize() {
 func (a *App) setRouters() {
 
 	a.Get("/health", a.handleRequest(handler.NotImplemented))
+	a.Post("/api/test_connectivity", a.handleRequest(handler.NotImplemented))
 
 
 
