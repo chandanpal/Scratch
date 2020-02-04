@@ -8,3 +8,5 @@ variable_dump.txt
 __pycache__
 *.pyc
 env.list
+ecohub/discover_services/discover_services
+ecohub/discover_services/logs
