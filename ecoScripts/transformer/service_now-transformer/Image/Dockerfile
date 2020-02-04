@@ -2,6 +2,14 @@
 FROM centos:7
 LABEL Project=ecoHub Name=Aurora Version=0.0.1
 
+# MongoDB (temporary demo solution)
+RUN echo -e "\
+[mongodb-org-4.2]\n\
+name=MongoDB Repository\n\
+baseurl=https://repo.mongodb.org/yum/redhat/\$releasever/mongodb-org/4.2/x86_64/\n\
+gpgcheck=1\n\
+enabled=1\n\
+gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc" >> /etc/yum.repos.d/mongodb-org-4.2.repo
 
 RUN yum install -y mongodb-org
 
