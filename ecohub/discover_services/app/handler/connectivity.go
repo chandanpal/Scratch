@@ -10,6 +10,7 @@ import (
 	_"reflect"
 	_"time"
 	"context"
+	"fmt"
 	
 )
 
@@ -76,9 +77,13 @@ func TestFlink(w http.ResponseWriter, postData model.PostData) int{
 }
 
 func TestKafka(w http.ResponseWriter, postData model.PostData) int{
-	var kafkaHost string
-	var kafkaPort string
-	var statusCode int
+	var (
+		kafkaHost string
+		kafkaPort string
+		statusCode int
+		ProducerTopic string
+		ConsumerTopic string
+	)
 	for _, val := range postData.Parameters{
                 if val.Name == "kafka_host"{
                         kafkaHost = val.Value
@@ -86,7 +91,15 @@ func TestKafka(w http.ResponseWriter, postData model.PostData) int{
                 if val.Name == "kafka_port"{
                         kafkaPort = val.Value
                 }
+		if val.Name == "producer_topic"{
+			ProducerTopic = val.Value
+		}
+		if val.Name == "consumer_topic"{
+			ConsumerTopic = val.Value
+		}
         }
+	fmt.Println(kafkaHost, kafkaPort, ProducerTopic, ConsumerTopic, statusCode)
+	/*
 	kafkaUrl := "http://" + kafkaHost + ":" + kafkaPort
 	resp, err := request(kafkaUrl)
 	if err != nil{
@@ -99,6 +112,9 @@ func TestKafka(w http.ResponseWriter, postData model.PostData) int{
 		statusCode = resp.StatusCode
 	}
 	return statusCode
+	kafka_connect()
+	*/
+	return 200
 }
 
 func TestConnectivity(w http.ResponseWriter, r *http.Request){
@@ -144,22 +160,38 @@ func TestConnectivity(w http.ResponseWriter, r *http.Request){
 }
 
 func TestAciUserpass(w http.ResponseWriter, postData model.PostData) int{
-	var aciHost string
-        var aciUser string
-        var aciPass string
+	var (
+		aciHost string
+		aciUser string
+		aciPass string
+		tenantName string
+		apName string
+	)
         for _, val := range postData.Parameters{
-                if val.Name == "apic_hostname"{
-                        aciHost = val.Value
-                }
-                if val.Name == "aci_username"{
-                        aciUser = val.Value
-                }
+		if val.Name == "apic_hostname"{
+			aciHost = val.Value
+		}
+		if val.Name == "aci_username"{
+			aciUser = val.Value
+		}
 		if val.Name == "aci_password"{
-                        aciPass = val.Value
-                }
+			aciPass = val.Value
+		}
+		if val.Name == "tenant_name"{
+			tenantName = val.Value
+		}
+		if val.Name == "ap_name"{
+			apName = val.Value
+		}
         }
 	ApicInit(aciHost, aciUser, aciPass)
 	login(w)
+	if tenantName != ""{
+		checkTenantExistence(w, tenantName)
+	}
+	if apName != ""{
+		checkAppExistence(w, apName)
+	}
 	logout(w)
 	return 200
 }

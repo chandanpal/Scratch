@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"net/http"
 	"io/ioutil"
+	"fmt"
 	
 )
 
@@ -67,6 +68,23 @@ func logout(w http.ResponseWriter){
 	}
 }
 
-func request_apic(method string, url string){
-	
+func checkTenantExistence(w http.ResponseWriter, tenantName string){
+	url := APIC.Base_url + "/api/node/class/fvTenant.json?query-target-filter=eq(fvTenant.name, " + tenantName + ")"
+	res, err := request(url)
+	fmt.Println(res)
+	if err !=  nil{
+		fmt.Println("Tenant not exists", err.Error())
+		respondError(w, http.StatusNotFound, err.Error())
+	}
+		
+}
+
+func checkAppExistence(w http.ResponseWriter, appName string){
+	url := APIC.Base_url + "/api/node/class/fvAp.json?query-target-filter=eq(fvAp.name," +appName+ ")"
+	res, err := request(url)
+	fmt.Println(res)
+	if err !=  nil{
+		fmt.Println("Application Profile Name not exists", err.Error())
+		respondError(w, http.StatusNotFound, err.Error())
+	}
 }
