@@ -1,0 +1,168 @@
+{
+	"id": "1c0c14fa-c925-4059-d1d1-89fd6c794baf",
+	"name": "Test Connectivity",
+	"description": "Testing connectivity of targets. ",
+	"order": [
+		"9232b7cc-b799-eb0f-4b89-86e08b661969",
+		"23afb60a-bf1f-ad74-a8c7-5d785603f2ab",
+		"fe9d81ac-8d7e-187a-9a74-a01dd1e81a75",
+		"5f864411-d3c0-58ad-b83f-1062208150aa",
+		"172a9e00-7b83-c27d-7fda-0b5cb5497dd3"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1580391801469,
+	"owner": "1305303",
+	"public": false,
+	"requests": [
+		{
+			"id": "172a9e00-7b83-c27d-7fda-0b5cb5497dd3",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{IP}}:{{PORT}}/api/test_connectivity",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1581425704569,
+			"name": "{{IP}}:{{PORT}}/api/test_connectivity [Aci certificate] - Not Implemented",
+			"description": "",
+			"collectionId": "1c0c14fa-c925-4059-d1d1-89fd6c794baf",
+			"responses": [],
+			"rawModeData": "{\r\n  \"type\": \"aci\",\r\n  \"connection_type\": \"certificate\",\r\n  \"parameters\": [\r\n    {\r\n      \"name\": \"apic_hostname\",\r\n      \"value\": \"\"\r\n    },\r\n    {\r\n      \"name\": \"aci_certificate\",\r\n      \"value\": \"\"\r\n    },\r\n    {\r\n      \"name\": \"aci_private_key\",\r\n      \"value\": \"\"\r\n    }\r\n  ]\r\n}"
+		},
+		{
+			"id": "23afb60a-bf1f-ad74-a8c7-5d785603f2ab",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{IP}}:{{PORT}}/api/test_connectivity",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1581425659075,
+			"name": "{{IP}}:{{PORT}}/api/test_connectivity [Kafka] - Not Tested",
+			"description": "",
+			"collectionId": "1c0c14fa-c925-4059-d1d1-89fd6c794baf",
+			"responses": [],
+			"rawModeData": "{\r\n  \"type\": \"kafka\",\r\n  \"connection_type\": \"default\",\r\n  \"parameters\": [\r\n    {\r\n      \"name\": \"kafka_host\",\r\n      \"value\": \"\"\r\n    },\r\n    {\r\n      \"name\": \"kafka_port\",\r\n      \"value\": \"\"\r\n    }\r\n  ]\r\n}"
+		},
+		{
+			"id": "5f864411-d3c0-58ad-b83f-1062208150aa",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{IP}}:{{PORT}}/api/test_connectivity",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1581425699705,
+			"name": "{{IP}}:{{PORT}}/api/test_connectivity [Aci userpass] - Not Tested",
+			"description": "",
+			"collectionId": "1c0c14fa-c925-4059-d1d1-89fd6c794baf",
+			"responses": [],
+			"rawModeData": "{\r\n  \"type\": \"aci\",\r\n  \"connection_type\": \"userpass\",\r\n  \"parameters\": [\r\n    {\r\n      \"name\": \"apic_hostname\",\r\n      \"value\": \"\"\r\n    },\r\n    {\r\n      \"name\": \"aci_username\",\r\n      \"value\": \"\"\r\n    },\r\n    {\r\n      \"name\": \"aci_password\",\r\n      \"value\": \"\"\r\n    }\r\n  ]\r\n}"
+		},
+		{
+			"id": "9232b7cc-b799-eb0f-4b89-86e08b661969",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{IP}}:{{PORT}}/api/test_connectivity",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1581425646352,
+			"name": "{{IP}}:{{PORT}}/api/test_connectivity [Elasticsearch] - Completed",
+			"description": "",
+			"collectionId": "1c0c14fa-c925-4059-d1d1-89fd6c794baf",
+			"responses": [],
+			"rawModeData": "{\r\n  \"type\": \"elasticsearch\",\r\n  \"connection_type\": \"default\",\r\n  \"parameters\": [\r\n    {\r\n      \"name\": \"es_host\",\r\n      \"value\": \"10.23.239.71\"\r\n    },\r\n    {\r\n      \"name\": \"es_port\",\r\n      \"value\": \"9200\"\r\n    }\r\n  ]\r\n}"
+		},
+		{
+			"id": "fe9d81ac-8d7e-187a-9a74-a01dd1e81a75",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{IP}}:{{PORT}}/api/test_connectivity",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1581425676917,
+			"name": "{{IP}}:{{PORT}}/api/test_connectivity [Flink] - Not Tested",
+			"description": "",
+			"collectionId": "1c0c14fa-c925-4059-d1d1-89fd6c794baf",
+			"responses": [],
+			"rawModeData": "{\r\n  \"type\": \"Flink\",\r\n  \"connection_type\": \"default\",\r\n  \"parameters\": [\r\n    {\r\n      \"name\": \"flink_host\",\r\n      \"value\": \"\"\r\n    },\r\n    {\r\n      \"name\": \"flink_port\",\r\n      \"value\": \"\"\r\n    }\r\n  ]\r\n}"
+		}
+	]
+}

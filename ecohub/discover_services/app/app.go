@@ -36,7 +36,7 @@ func (a *App) Initialize() {
 	a.Router = mux.NewRouter()
 	a.setRouters()
 	a.Router.Use(RequestLoggingMiddleware)
-	//handler.Init()
+	handler.Init()
 	//apdb.Init()
 
 
@@ -47,8 +47,7 @@ func (a *App) Initialize() {
 func (a *App) setRouters() {
 
 	a.Get("/health", a.handleRequest(handler.NotImplemented))
-
-
+	a.Post("/api/test_connectivity", a.handleRequest(handler.TestConnectivity))
 
 }
 
@@ -79,7 +78,7 @@ func (a *App) Run() {
 	log.Fatal(http.ListenAndServe(host, a.Router))
 }
 
-type RequestHandlerFunction func(db *mongo.Client, w http.ResponseWriter, r *http.Request)
+type RequestHandlerFunction func(w http.ResponseWriter, r *http.Request)
 
 func (a *App) handleRequest(handler RequestHandlerFunction) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -88,7 +87,7 @@ func (a *App) handleRequest(handler RequestHandlerFunction) http.HandlerFunc {
 		// defer func() {
 		// 	log.Printf("after Method: %s, URL: %s, Duration: %s", r.Method, r.URL, time.Since(start))
 		// }()
-		handler(a.DB, w, r)
+		handler(w, r)
 	}
 }
 

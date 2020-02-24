@@ -4,11 +4,22 @@ import (
 	"encoding/json"
 	"net/http"
 	_"github.com/jinzhu/gorm"
-	"go.mongodb.org/mongo-driver/mongo"
+	_"go.mongodb.org/mongo-driver/mongo"
 	"io/ioutil"
-	_"io"
-	_"github.com/discover_services/app/model"
+	"io"
+	"github.com/discover_services/app/model"
+	"github.com/discover_services/logger"
+	"time"
+	_"fmt"
+	
 )
+
+var logs *logger.Logger
+
+
+func Init() {
+	logs = logger.Logs.GetLogger("Handler")
+}
 
 // respondJSON makes the response with payload as json format
 func respondJSON(w http.ResponseWriter, status int, payload interface{}) {
@@ -30,7 +41,7 @@ func respondError(w http.ResponseWriter, code int, message string) {
 }
 
 
-func NotImplemented(db *mongo.Client, w http.ResponseWriter, r *http.Request) {
+func NotImplemented(w http.ResponseWriter, r *http.Request) {
 
 	respondJSON(w, http.StatusOK, "API Not Implemented")
 }
@@ -45,3 +56,21 @@ func getResponseData(url string) ([]byte, error) {
 	contents, _ := ioutil.ReadAll(response.Body)
 	return contents, nil
 }
+
+func getPostData(data io.Reader)(model.PostData, error){
+
+        postData := model.PostData{}
+        decoder := json.NewDecoder(data)
+        err := decoder.Decode(&postData)
+        return postData, err
+
+}
+
+func request(url string) (*http.Response, error){
+	client := http.Client{
+                Timeout: 200 * time.Second,
+        }
+	resp, err := client.Get(url)
+        return resp, err	
+}
+
