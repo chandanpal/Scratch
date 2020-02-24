@@ -1,8 +1,8 @@
 {
-  "name": "service_now-transformer",
+  "name": "service-now-transformer",
   "version": "0.1",
   "type": "api",
-  "docker_image": "runnerdockerrepo/service_now-transformer:0.1",
+  "docker_image": "runnerdockerrepo/service-now-transformer:0.1",
   "config_parameters": {
     "name": "kafka_connectivity_options",
     "label": "Kafka Connectivity Options",

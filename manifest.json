@@ -1,26 +1,26 @@
 [
   {
-    "name": "service_now-producer",
+    "name": "service-now-producer",
     "label": "ServiceNowProducer",
     "type": "producer",
     "versions": [
       "0.1"
     ],
     "latest": "0.1",
-    "path": "https://raw.githubusercontent.com/chandanpal/Scratch/runner2.0/ecoScripts/producer/service_now-producer/",
+    "path": "https://raw.githubusercontent.com/chandanpal/Scratch/runner2.0/ecoScripts/producer/service-now-producer/",
     "icon": "icon.png",
     "tags": "servicenow",
     "required_services" : ["kafka"]
   },
   {
-    "name": "service_now-consumer",
+    "name": "service-now-consumer",
     "label": "ServiceNowConsumer",
     "type": "consumer",
     "versions": [
       "0.1"
     ],
     "latest": "0.1",
-    "path": "https://raw.githubusercontent.com/chandanpal/Scratch/runner2.0/ecoScripts/consumer/service_now-consumer/",
+    "path": "https://raw.githubusercontent.com/chandanpal/Scratch/runner2.0/ecoScripts/consumer/service-now-consumer/",
     "icon": "icon.png",
     "tags": "servicenow",
     "required_services" : [
@@ -31,14 +31,14 @@
     ]
   },
   {
-    "name": "service_now-transformer",
+    "name": "service-now-transformer",
     "label": "ServiceNowTransformer",
     "type": "transformer",
     "versions": [
       "0.1"
     ],
     "latest": "0.1",
-    "path": "https://raw.githubusercontent.com/chandanpal/Scratch/runner2.0/ecoScripts/transformer/service_now-transformer/",
+    "path": "https://raw.githubusercontent.com/chandanpal/Scratch/runner2.0/ecoScripts/transformer/service-now-transformer/",
     "icon": "icon.png",
     "tags": "servicenow",
     "required_services" : [

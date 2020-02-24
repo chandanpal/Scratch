@@ -1,8 +1,8 @@
 {
-  "name": "service_now-producer",
+  "name": "service-now-producer",
   "version": "0.1",
   "type": "api",
-  "docker_image": "runnerdockerrepo/service_now-producer:0.1",
+  "docker_image": "runnerdockerrepo/service-now-producer:0.1",
   "config_parameters": {
     "name": "snow_connection_parameters",
     "label": "ServiceNow Connection Parameters",
