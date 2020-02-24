@@ -2,7 +2,7 @@
   "name": "service-now-consumer",
   "version": "0.1",
   "type": "api",
-  "docker_image": "runnerdockerrepo/service-now-consumer:0.1",
+  "docker_image": "runner2020/service-now-consumer:0.1",
   "config_parameters": {
     "name": "aci_parameters",
     "label": "ACI Parameters",
