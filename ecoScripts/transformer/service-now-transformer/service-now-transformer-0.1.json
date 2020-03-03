@@ -1,5 +1,6 @@
 {
   "name": "service-now-transformer",
+  "label": "ServiceNow Transformer",
   "version": "0.1",
   "type": "api",
   "docker_image": "runner2020/service-now-transformer:0.1",
