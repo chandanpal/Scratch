@@ -1,5 +1,6 @@
 {
   "name": "service-now-consumer",
+  "label": "ServiceNow Consumer",
   "version": "0.1",
   "type": "api",
   "docker_image": "runner2020/service-now-consumer:0.1",

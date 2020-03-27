@@ -1,5 +1,6 @@
 {
   "name": "service-now-producer",
+  "label": "ServiceNow Producer",
   "version": "0.1",
   "type": "api",
   "docker_image": "runner2020/service-now-producer:0.1",
