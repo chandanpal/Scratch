@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/DataDog/zstd v1.4.4 // indirect
+	github.com/Shopify/sarama v1.26.1
 	github.com/elastic/go-elasticsearch/v5 v5.6.1
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/gorilla/mux v1.7.3

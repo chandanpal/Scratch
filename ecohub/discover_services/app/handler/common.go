@@ -68,7 +68,7 @@ func getPostData(data io.Reader)(model.PostData, error){
 
 func request(url string) (*http.Response, error){
 	client := http.Client{
-                Timeout: 200 * time.Second,
+                Timeout: 10 * time.Second,
         }
 	resp, err := client.Get(url)
         return resp, err	
