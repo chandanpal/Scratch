@@ -10,11 +10,10 @@ import (
 	_"reflect"
 	_"time"
 	"context"
-	"fmt"
 	
 )
 
-func TestElasticsearch(w http.ResponseWriter, postData model.PostData) int{
+func TestElasticsearch(w http.ResponseWriter, postData model.PostData) {
 	var esHost string
 	var esPort string
 	var status_code int
@@ -29,11 +28,12 @@ func TestElasticsearch(w http.ResponseWriter, postData model.PostData) int{
 	esURL := "http://" + esHost + ":" + esPort
 	//ctx := context.Background()
 	//client, err := elastic.NewClient(elastic.SetURL(esURL))
-	client, err := elastic.NewClient(elastic.SetURL(esURL), elastic.SetHealthcheck(false), elastic.SetSniff(false))
+	client, err := elastic.NewClient(elastic.SetURL(esURL), elastic.SetHealthcheck(false), elastic.SetSniff(false), elastic.SetHealthcheckTimeout(5))
 	if err != nil {
 		err_msg := "Error Instantiating Elasticsearch Client. Error : " + string(err.Error())
 		logs.Errorf(err_msg)
 		respondError(w,  http.StatusBadRequest, err_msg)
+		return 
 	}
 	// Ping the Elasticsearch server to get.
 	_, _, err = client.Ping(esURL).Do(context.TODO())
@@ -43,13 +43,11 @@ func TestElasticsearch(w http.ResponseWriter, postData model.PostData) int{
 		err_msg := "Elasticsearch is not running, Ping to the ES host failed with the error : " + string(err.Error())
 		status_code = http.StatusNotFound
                 respondError(w,  status_code, err_msg)
-	} else {
-		status_code = http.StatusOK
+		return
 	}
-	return status_code
 }
 
-func TestFlink(w http.ResponseWriter, postData model.PostData) int{
+func TestFlink(w http.ResponseWriter, postData model.PostData){
 	var flinkHost string
 	var flinkPort string
 	var statusCode int
@@ -68,15 +66,15 @@ func TestFlink(w http.ResponseWriter, postData model.PostData) int{
 		err_msg := "Flink is not running. Error : " + string(err.Error())
 		statusCode = http.StatusNotFound
 		respondError(w,  statusCode, err_msg)
+		return
 	}
 	if resp != nil{
 		statusCode = resp.StatusCode
 		//responseData, _ := ioutil.ReadAll(resp.Body)
 	}
-	return statusCode
 }
 
-func TestKafka(w http.ResponseWriter, postData model.PostData) int{
+func TestKafka(w http.ResponseWriter, postData model.PostData) {
 	var (
 		kafkaHost string
 		kafkaPort string
@@ -98,23 +96,26 @@ func TestKafka(w http.ResponseWriter, postData model.PostData) int{
 			ConsumerTopic = val.Value
 		}
         }
-	fmt.Println(kafkaHost, kafkaPort, ProducerTopic, ConsumerTopic, statusCode)
-	/*
-	kafkaUrl := "http://" + kafkaHost + ":" + kafkaPort
-	resp, err := request(kafkaUrl)
-	if err != nil{
-		logs.Errorf("Error connecting kafka server. Error: ", err.Error())
-                err_msg := "Kafka is not running. Error : " + string(err.Error())
-		statusCode = http.StatusNotFound
-                respondError(w, statusCode, err_msg)
+	statusCode, producerTopicFound, consumerTopicFound := kafka_connect(kafkaHost , kafkaPort,  ProducerTopic, ConsumerTopic)
+        if statusCode == http.StatusNotFound{
+                logs.Errorf("Not able to connect to kafka host")
+                respondError(w, statusCode, "Not able to connect to kafka host")
+                return
         }
-	if resp != nil{
-		statusCode = resp.StatusCode
+	if ProducerTopic != ""{
+		if producerTopicFound == false {
+			logs.Errorf("Producer Topic not found") 
+                	respondError(w, http.StatusBadRequest, "Producer/Consumer Topic not found")
+                	return
+		}
 	}
-	return statusCode
-	kafka_connect()
-	*/
-	return 200
+	if ConsumerTopic != ""{
+		if consumerTopicFound == false {
+			logs.Errorf("Consumer Topic not found")
+	                respondError(w, http.StatusBadRequest, "Consumer/Producer Topic not found")
+        	        return
+		}
+	}
 }
 
 func TestConnectivity(w http.ResponseWriter, r *http.Request){
@@ -124,42 +125,31 @@ func TestConnectivity(w http.ResponseWriter, r *http.Request){
                 respondError(w,  http.StatusBadRequest, "Request body decode Error")
         }
 	if postData.Type == "Flink"{
-		status_code := TestFlink(w, postData)
-		if status_code == 200{
-			respondJSON(w, http.StatusOK, "Flink server is running successfully")
-		}
+		TestFlink(w, postData)
+		respondJSON(w, http.StatusOK, "Flink server is running successfully")
 	}
 	if postData.Type == "elasticsearch"{
-		status_code := TestElasticsearch(w, postData)
-		if status_code == 200{
-                        respondJSON(w, http.StatusOK, "Elasticsearch server is running successfully")
-                }
-
+		TestElasticsearch(w, postData)
+                respondJSON(w, http.StatusOK, "Elasticsearch server is running successfully")
 	}
 	if postData.Type == "kafka"{
-		status_code := TestKafka(w, postData)
-                if status_code == 200{
-                        respondJSON(w, http.StatusOK, "Kafka server is running successfully")
-                }
+		TestKafka(w, postData)
+                respondJSON(w, http.StatusOK, "Kafka server is running successfully")
 	}
 
 	if postData.Type == "aci"{
 		if postData.Connection_type == "userpass"{
-			status_code := TestAciUserpass(w, postData)
-	                if status_code == 200{ 
-                        	respondJSON(w, http.StatusOK, "ACI test connectivity Done")
-                	}
+			TestAciUserpass(w, postData)
+                       	respondJSON(w, http.StatusOK, "ACI test connectivity Done")
 		}
 		if postData.Connection_type == "certificate"{
-			status_code := TestAciCertificate(w, postData)
-			if status_code == 200{
-				respondJSON(w, http.StatusOK, "ACI test connectivity Done")
+			TestAciCertificate(w, postData)
+			respondJSON(w, http.StatusOK, "ACI certificate not Implemented")
 			}
 		}
-	}
 }
 
-func TestAciUserpass(w http.ResponseWriter, postData model.PostData) int{
+func TestAciUserpass(w http.ResponseWriter, postData model.PostData) {
 	var (
 		aciHost string
 		aciUser string
@@ -193,9 +183,8 @@ func TestAciUserpass(w http.ResponseWriter, postData model.PostData) int{
 		checkAppExistence(w, apName)
 	}
 	logout(w)
-	return 200
 }
 
-func TestAciCertificate(w http.ResponseWriter, postData model.PostData) int{
-	return 200
+func TestAciCertificate(w http.ResponseWriter, postData model.PostData) {
+	return
 }

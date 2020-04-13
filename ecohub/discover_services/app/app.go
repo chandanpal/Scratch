@@ -22,6 +22,8 @@ type App struct {
 }
 var logs *logger.Logger
 
+var accessLogs *logger.Logger
+
 // Initialize initializes the app with predefined configuration
 func (a *App) Initialize() {
 
@@ -33,6 +35,14 @@ func (a *App) Initialize() {
 		}
 
 	logs = logs.GetLogger("App")
+
+	//Initialize Access log
+	config.CONF.Logger.FileLocation = config.CONF.Logger.AccessLog
+	accessLogs, err = logger.Initialize(false)
+	if err != nil {
+		log.Fatalf("Access Logs Initialize failed")
+	}	
+
 	a.Router = mux.NewRouter()
 	a.setRouters()
 	a.Router.Use(RequestLoggingMiddleware)
@@ -96,18 +106,12 @@ func (a *App) handleRequest(handler RequestHandlerFunction) http.HandlerFunc {
 func RequestLoggingMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		
-		config.CONF.Logger.FileLocation = config.CONF.Logger.AccessLog
-		logs, err := logger.Initialize(false)
-		if err != nil {
-			log.Fatalf("log Initialize failed")
-		}
-		logs = logs.GetLogger("Access")
-
+		alogs := accessLogs.GetLogger("Access")
 		start := time.Now()
-		logs.Infof("Request Method: %s, URL: %s, Duration: %s", r.Method, r.URL, time.Since(start))
+		alogs.Infof("Request Method: %s, URL: %s, Duration: %s", r.Method, r.URL, time.Since(start))
 		
 		defer func() {
-			logs.Infof("Response Method: %s, URL: %s, Duration: %s", r.Method, r.URL, time.Since(start))
+			alogs.Infof("Response Method: %s, URL: %s, Duration: %s", r.Method, r.URL, time.Since(start))
 		}()
 		next.ServeHTTP(w, r)
 	})
